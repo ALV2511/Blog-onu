@@ -317,9 +317,9 @@ body {
   border: none;
 }
 
-/* MODIFICAÇÃO EXCLUSIVA PARA ENCAIXAR O IFRAME DA REPORTAGEM SEM ALTERAR OUTRAS PÁGINAS */
+/* AJUSTE EXCLUSIVO PARA REMOVER AS BARRAS PRETAS DO IFRAME */
 .video-wrapper.local-video-container {
-  padding-top: 56.25%; /* Mantém a proporção perfeita do player responsivo */
+  padding-top: 56.25%; 
   background: #000;
 }
 

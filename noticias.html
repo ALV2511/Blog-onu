@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notícias — MUN Blog</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- TABS ---- */
+    .tabs-wrapper {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tab-btn:hover { color: var(--blue-main); }
+    .tab-btn.active {
+      color: var(--blue-main);
+      border-bottom-color: var(--blue-main);
+    }
+    .tab-section { display: none; }
+    .tab-section.active { display: block; }
+
+    /* ---- POSTS LIST ---- */
+    .post-list-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      margin-bottom: 14px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .post-list-item:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--blue-main);
+    }
+    .post-list-item a {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .post-list-num {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--blue-light);
+      font-family: var(--font-display);
+      min-width: 36px;
+      text-align: center;
+    }
+    .post-list-info { flex: 1; }
+    .post-list-info h3 {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .post-list-info p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .post-list-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      min-width: 110px;
+    }
+    .post-list-date {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* ---- COMUNICADOS ---- */
+    .comunicado-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin-bottom: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .comunicado-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      border-radius: 4px 0 0 4px;
+    }
+    .comunicado-card.urgente::before { background: #ef4444; }
+    .comunicado-card.info::before    { background: #3b82f6; }
+    .comunicado-card.aviso::before   { background: #f59e0b; }
+    .comunicado-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .comunicado-header h3 {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .comunicado-badges { display: flex; gap: 8px; align-items: center; }
+    .badge-tipo {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .badge-urgente { background: #fee2e2; color: #991b1b; }
+    .badge-info    { background: #dbeafe; color: #1e40af; }
+    .badge-aviso   { background: #fef3c7; color: #92400e; }
+    .comunicado-data { font-size: 12px; color: var(--text-light); }
+    .comunicado-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ---- GUIA DE COMO ADICIONAR ---- */
+    .guia {
+      background: var(--blue-pale);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-top: 32px;
+    }
+    .guia h3 {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--blue-dark);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .guia-step {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .guia-step:last-child { margin-bottom: 0; }
+    .step-num {
+      background: var(--blue-main);
+      color: white;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 500;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .guia-step p {
+      font-size: 14px;
+      color: var(--blue-dark);
+      line-height: 1.65;
+    }
+    .guia-step code {
+      background: white;
+      border: 1px solid #bfdbfe;
+      border-radius: 4px;
+      padding: 1px 7px;
+      font-size: 13px;
+      color: var(--blue-dark);
+      font-family: monospace;
+    }
+    .guia-divider {
+      border: none;
+      border-top: 1px solid #bfdbfe;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="brand">
+        <div class="un-logo">ONU</div>
+        <span class="brand-name">MUN Blog</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Início</a>
+        <a href="posts.html">Posts</a>
+        <a href="comites.html">Comitês</a>
+        <a href="noticias.html" class="active">Notícias</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="salas.html">Salas</a>
+      </div>
+      <button class="menu-btn" id="menuBtn">&#9776;</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Início</a>
+      <a href="posts.html">Posts</a>
+      <a href="comites.html">Comitês</a>
+      <a href="noticias.html">Notícias</a>
+      <a href="sobre.html">Sobre</a>
+    </div>
+  </nav>
+
+  <header class="post-hero">
+    <div class="container">
+      <span class="hero-eyebrow">Atualizações do MUN</span>
+      <h1 class="post-title">Notícias & Comunicados</h1>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container" style="max-width:820px">
+
+      <!-- TABS -->
+      <div class="tabs-wrapper">
+        <button class="tab-btn active" onclick="trocarTab('posts')">📝 Posts</button>
+        <button class="tab-btn" onclick="trocarTab('comunicados')">📢 Comunicados</button>
+      </div>
+
+      <!-- ===================== SEÇÃO: POSTS ===================== -->
+      <div class="tab-section active" id="tab-posts">
+
+        <!-- ========================================================
+          COMO ADICIONAR UM NOVO POST:
+          1. Duplique um dos <article> abaixo
+          2. Troque o número, título, resumo, tag, autor e data
+          3. Troque o href para apontar para o novo arquivo HTML
+          4. Crie o arquivo HTML do post (duplique um post existente)
+        ======================================================== -->
+
+        <article class="post-list-item">
+          <a href="post-conselho.html">
+            <span class="post-list-num">01</span>
+            <div class="post-list-info">
+              <h3>Tensão entre potências bloqueia acordo sobre zonas de conflito</h3>
+              <p>Conselho de Segurança encerra sessão sem consenso após impasse entre EUA e China.</p>
+            </div>
+            <div class="post-list-meta">
+              <span class="post-tag tag-security">Conselho de Seg.</span>
+              <span class="post-list-date">18 mai 2026</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="post-list-item">
+          <a href="post-assembleia.html">
+            <span class="post-list-num">02</span>
+            <div class="post-list-info">
+              <h3>Países em desenvolvimento formam bloco histórico na Assembleia</h3>
+              <p>Mais de 20 delegações se unem em declaração exigindo maior representatividade na ONU.</p>
+            </div>
+            <div class="post-list-meta">
+              <span class="post-tag tag-assembly">Assembleia Geral</span>
+              <span class="post-list-date">17 mai 2026</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="post-list-item">
+          <a href="post-ecosoc.html">
+            <span class="post-list-num">03</span>
+            <div class="post-list-info">
+              <h3>Comitê aprova diretrizes para erradicação do trabalho infantil até 2030</h3>
+              <p>Resolução aprovada por unanimidade prevê investimento em educação e renda mínima.</p>
+            </div>
+            <div class="post-list-meta">
+              <span class="post-tag tag-ecosoc">ECOSOC</span>
+              <span class="post-list-date">16 mai 2026</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="post-list-item">
+          <a href="post-bastidores.html">
+            <span class="post-list-num">04</span>
+            <div class="post-list-info">
+              <h3>Negociação nos corredores salva resolução que estava prestes a ser vetada</h3>
+              <p>Acordo de última hora em 20 minutos de conversa informal muda o rumo da votação.</p>
+            </div>
+            <div class="post-list-meta">
+              <span class="post-tag tag-backstage">Bastidores</span>
+              <span class="post-list-date">15 mai 2026</span>
+            </div>
+          </a>
+        </article>
+
+        <!-- GUIA: COMO ADICIONAR UM POST -->
+        
+
+      </div>
+
+      <!-- ===================== SEÇÃO: COMUNICADOS ===================== -->
+      <div class="tab-section" id="tab-comunicados">
+
+        <!-- ========================================================
+          COMO ADICIONAR UM NOVO COMUNICADO:
+          1. Duplique um dos <div class="comunicado-card"> abaixo
+          2. Escolha o tipo: urgente | info | aviso
+          3. Troque o título, texto e data
+          Tipos disponíveis:
+            - urgente → borda vermelha, badge vermelho
+            - info    → borda azul,    badge azul
+            - aviso   → borda amarela, badge amarelo
+        ======================================================== -->
+
+        <div class="comunicado-card urgente">
+          <div class="comunicado-header">
+            <h3>Sessão extraordinária convocada para amanhã</h3>
+            <div class="comunicado-badges">
+              <span class="badge-tipo badge-urgente">Urgente</span>
+              <span class="comunicado-data">11 jun 2026</span>
+            </div>
+          </div>
+          <p>Sessão extraordinária marcada para o dia 12/06/2026, O local de nossa simulação de debate ONU ocorrera na faculdade UniFunvic, O horário da reunião será durante nosso período escolar, ou seja nesse dia não é preciso ir para a escola, apenas devem ir à faculdade, lembrando que na faculdade tem cantina então levem um dinheiro para tomarem seu café.</p>
+        </div>
+
+        <div class="comunicado-card info">
+          <div class="comunicado-header">
+            <h3>Código de vestimenta</h3>
+            <div class="comunicado-badges">
+              <span class="badge-tipo badge-info">Informativo</span>
+              <span class="comunicado-data">10 jun 2026</span>
+            </div>
+          </div>
+          <p>A simulação terá um código de vestimenta, por isso é recomendado que todos venham com roupas formais, para que realmente entremos em um clima de debate. Também é recomendado usar acessórios ou alguma peça de roupa que remeta à cultura e à história do seu país (lembrando que a vestimenta contará nota).</p>
+        </div>
+
+        <div class="comunicado-card aviso">
+          <div class="comunicado-header">
+            <h3>Lembrete: Entrega da permissão do responsável</h3>
+            <div class="comunicado-badges">
+              <span class="badge-tipo badge-aviso">Aviso</span>
+              <span class="comunicado-data">9 jun 2026</span>
+            </div>
+          </div>
+          <p>Lembramos a todos os participantes da simulação que é necessário entregar a autorização dos responsáveis aos professores. Caso não a entreguem, vocês não poderão participar da reunião nem permanecer na faculdade.</p>
+        </div>
+
+        <!-- GUIA: COMO ADICIONAR UM COMUNICADO -->
+        
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 MUN Blog · Projeto Escolar · Feito com dedicação 🌐</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function trocarTab(tab) {
+      // esconde todas as seções e desativa todos os botões
+      document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      // ativa a seção e botão escolhidos
+      document.getElementById('tab-' + tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
+z

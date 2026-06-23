@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salas - Simulação</title>
+    <link rel="stylesheet" href="style.css"> 
+    
+    <style>
+        /* ==================================================================
+           ESTILO DO CABEÇALHO CLONADO DO SEU SITE (FOTO)
+           ================================================================== */
+        nav {
+            background-color: #0b3c74; /* Tom exato de azul escuro do seu print */
+            padding: 1rem 10%; /* Dá o espaçamento interno ideal para as laterais */
+            display: flex;
+            justify-content: space-between; /* Joga o logo para a esquerda e links para a direita */
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Área do Logo à esquerda */
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+
+        .logo-circulo {
+            background-color: #ffffff;
+            color: #0b3c74;
+            font-size: 0.75rem;
+            font-weight: 800;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: -0.5px;
+        }
+
+        /* Links de navegação à direita */
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            padding-bottom: 6px;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Efeito da linha branca embutida no link ativo ("Salas") */
+        .nav-links a.active {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff; /* Linha branca idêntica ao print */
+        }
+
+        /* ==================================================================
+           ESTILIZAÇÃO DO CONTEÚDO DAS SALAS
+           ================================================================== */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f9;
+        }
+
+        .container-salas-layout {
+            max-width: 1400px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+            font-family: sans-serif;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #1e293b;
+            border-bottom: 3px solid #0b3c74;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Container que segura as duas colunas lado a lado */
+        .duas-colunas {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Divide em duas colunas iguais */
+            gap: 2rem;
+        }
+
+        /* Se a tela for de celular, as colunas ficam uma embaixo da outra */
+        @media (max-width: 992px) {
+            .duas-colunas { 
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+        }
+
+        .grid-paises {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        
+        .card-pais {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+        
+        .foto-pais {
+            width: 110px;
+            height: 72px;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            object-fit: cover;
+            border: 1px solid #cbd5e1;
+            flex-shrink: 0;
+        }
+
+        .info-pais {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .info-pais h3 { 
+            margin: 0; 
+            color: #1e293b; 
+            font-size: 1.25rem;
+        }
+
+        .info-pais p { 
+            margin: 0; 
+            font-size: 0.92rem;
+            line-height: 1.45; 
+            color: #475569;
+        }
+
+        .tag-sala {
+            align-self: flex-start;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        .tag-2c { background-color: #fef3c7; color: #b45309; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <div class="logo-circulo">ONU</div>
+            <span>MUN Blog</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="posts.html">Posts</a>
+            <a href="comites.html">Comitês</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="noticias.html">Notícias</a>
+            <a href="salas.html" class="active">Salas</a>
+        </div>
+    </nav>
+
+    <main class="container-salas-layout">
+        
+        <section>
+            <h2 class="section-title">Salas 2°C & 2°B</h2>
+            
+            <!-- Div que gerencia o sistema de duas colunas -->
+            <div class="duas-colunas">
+                <!-- Coluna 1 (Esquerda) -->
+                <div id="box-sala-2c-col1" class="grid-paises"></div>
+                
+                <!-- Coluna 2 (Direita) -->
+                <div id="box-sala-2c-col2" class="grid-paises"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Lista base dos 21 países
+        const paisesBase = [
+            { nome: "Brasil", foto: "Fotos%20onu/brasil.jpeg", descricao: "O Brasil adota uma postura de liderança regional e forte engajamento institucional no combate ao tráfico de pessoas, tratando a temática sob a ótica indissociável da defesa dos direitos humanos e da segurança pública. Alinhado ao Protocolo de Palermo da ONU, o país estrutura suas ações por meio da Política Nacional de Enfrentamento ao Tráfico de Pessoas, articulando uma rede que envolve governos federais, estaduais e municipais, além da sociedade civil. O posicionamento oficial brasileiro prioriza o combate rigoroso ao trabalho análogo à escravidão e à exploração sexual, utilizando instrumentos consolidados como a fiscalização do trabalho e o fortalecimento de canais de denúncia. Além disso, o governo foca no acolhimento humanitário e na assistência jurídica, psicológica e social às vítimas, garantindo também a proteção de migrantes em situação de vulnerabilidade contra as redes criminosas transnacionais." },
+            { nome: "Estados Unidos", foto: "Fotos%20onu/eua.jpeg", descricao: "Os Estados Unidos adotam uma postura de liderança global e tolerância zero no combate ao tráfico de pessoas, tratando o tema como uma ameaça frontal à segurança nacional, à saúde pública e aos direitos humanos. Amparado por legislações internas robustas, como a Lei de Proteção às Vítimas de Tráfico (TVPA), o país foca no desmantelamento de redes criminosas transnacionais de exploração sexual e laboral por meio de agências federais de inteligência. O posicionamento oficial estadunidense prioriza a aplicação de sanções econômicas internacionais a governos que não cumprem os padrões mínimos de combate ao crime, a punição rigorosa dos traficantes e o fornecimento de vistos especiais e assistência integral para a proteção e acolhimento de vítimas estrangeiras que colaboram com a justiça." },
+            { nome: "México", foto: "Fotos%20onu/méxico.jpeg", descricao: "O México adota uma postura de forte engajamento e cooperação internacional no combate ao tráfico de pessoas, reconhecendo o imenso desafio de ser, simultaneamente, um país de origem, trânsito, destino e retorno de vítimas. Alinhado aos tratados da ONU, o posicionamento oficial mexicano foca no endurecimento de sua Lei Geral para Prevenir, Punir e Erradicar os Crimes em Matéria de Tráfico de Pessoas, priorizando o desmantelamento de cartéis e redes criminosas transnacionais que exploram migrantes vulneráveis em rotas rumo ao norte. O governo enfatiza a necessidade de uma responsabilidade compartilhada com os países vizinhos da região, investindo na modernização de seus postos de controle fronteiriço, na capacitação de agentes de segurança e no fortalecimento de abrigos especializados que oferecem proteção, apoio psicológico e assistência jurídica às vítimas de exploração laboral e sexual." },
+            { nome: "Índia", foto: "Fotos%20onu/india.jpeg", descricao: "A Índia adota uma postura de enfrentamento multifacetado ao tráfico de pessoas, reconhecendo a complexidade do problema em um território de vasta extensão e diversidade socioeconômica. Alinhado às diretrizes internacionais e amparado por dispositivos constitucionais rígidos, o país foca na repressão a crimes de exploração laboral, trabalho forçado infantil e exploração sexual. O posicionamento oficial indiano prioriza o fortalecimento das Unidades de Combate ao Tráfico de Pessoas (AHTUs) em nível estadual e a modernização de legislações penais. Além disso, o governo enfatiza programas de reabilitação e reintegração social baseados na comunidade, bem como a necessidade de cooperação transfronteiriça com nações vizinhas do Sul da Ásia para monitorar e desmantelar rotas de contrabando e redes criminosas estruturadas." },
+            { nome: "Catar", foto: "Fotos%20onu/catar.jpeg", descricao: "O Catar adota uma postura de profunda transformação e engajamento institucional no enfrentamento ao tráfico de pessoas, impulsionada por reformas estruturais em seu sistema trabalhista e pelo alinhamento com os padrões da Organização Internacional do Trabalho (OIT) e da ONU. O posicionamento oficial catari prioriza o combate rigoroso à exploração laboral e ao recrutamento ilegal de trabalhadores estrangeiros, tendo como marcos a abolição do antigo sistema de patrocínio (Kafala) e a criação de leis rígidas de proteção salarial. O país foca sua atuação na intensificação de inspeções trabalhistas, na punição severa de empresas infratoras através do Comitê Nacional de Combate ao Tráfico de Pessoas, e no suporte humanitário às vítimas por meio do financiamento de centros de acolhimento especializados e da promoção de campanhas de conscientização globais e regionais." },
+            { nome: "Nigéria", foto: "Fotos%20onu/nigeria.jpeg", descricao: "A Nigéria adota uma postura de vanguarda regional e forte determinação institucional no combate ao tráfico de pessoas, sendo um dos países mais ativos da África Ocidental no enfrentamento a esse crime. Por meio da NAPTIP (Agência Nacional para a Proibição do Tráfico de Pessoas), o posicionamento oficial nigeriano foca na aplicação rigorosa de leis penais para punir traficantes e desmantelar redes que alimentam a exploração sexual e o trabalho forçado doméstico e internacional. O governo enfatiza a cooperação com agências internacionais e nações europeias para monitorar rotas migratórias perigosas, além de investir massivamente em campanhas de conscientização interna, programas de reabilitação e assistência psicossocial para acolher e reintegrar à sociedade as vítimas resgatadas." },
+            { nome: "Líbia", foto: "Fotos%20onu/Libia.jpeg", descricao: "A Líbia enfrenta profundos desafios institucionais no combate ao tráfico de pessoas devido à sua fragmentação política e instabilidade interna, fatores que transformaram o país em uma das principais rotas de trânsito para redes de contrabando na direção da Europa. Diante disso, o posicionamento oficial da Líbia busca frequentemente responsabilizar a comunidade internacional e os países de destino pelo fardo da crise migratória, ao mesmo tempo em que apela por maior assistência técnica, financeira e de segurança para fortalecer o controle de suas fronteiras e combater os grupos criminosos que operam em seu território." },
+            { nome: "Alemanha", foto: "Fotos%20onu/alemanha.jpeg", descricao: "A Alemanha adota uma postura de tolerância zero e forte enfrentamento ao tráfico de pessoas, classificando-o como uma grave violação aos direitos humanos. Alinhado às diretrizes da ONU, o país defende a cooperação internacional de segurança para desmantelar redes criminosas, mantém um Plano de Ação Nacional rígido contra a exploração sexual e o trabalho forçado, e foca ativamente na proteção às vítimas através de abrigos especializados, suporte psicológico e parcerias com ONGs." },
+            { nome: "China", foto: "Fotos%20onu/china.jpeg", descricao: "A China adota uma postura de tolerância zero e extremo rigor penal no combate ao tráfico de pessoas, classificando o crime como uma violação severa da ordem pública e dos direitos dos cidadãos. O posicionamento oficial chinês baseia-se na execução de Planos de Ação Nacionais abrangentes, focados no combate à exploração laboral, ao casamento forçado e ao tráfico de mulheres e crianças. O governo prioriza o uso de tecnologias avançadas de monitoramento, inteligência e bancos de dados de DNA para desmantelar redes criminosas internas e transfronteiriças. Além disso, o país enfatiza a aplicação de penas severas aos traficantes e compradores, a reabilitação das vítimas resgatadas e o fortalecimento da cooperação policial internacional, especialmente com nações vizinhas do Sudeste Asiático." },
+            { nome: "Filipinas", foto: "Fotos%20onu/filipinas.jpeg", descricao: "As Filipinas adotam uma postura de forte engajamento e vigilância contínua no combate ao tráfico de pessoas, sendo um dos países mais ativos do Sudeste Asiático no enfrentamento a esse crime devido ao grande volume de cidadãos que trabalham no exterior. Alinhado às diretrizes da ONU, o posicionamento oficial filipino ampara-se na Lei de Prevenção ao Tráfico de Pessoas e atua por meio do Conselho Interagências Contra o Tráfico (IACAT). O governo prioriza o combate rigoroso ao recrutamento ilegal e à exploração laboral e sexual de seus trabalhadores migrantes, além de manter um foco severo no enfrentamento à exploração sexual infantil online. O país enfatiza o fortalecimento das inspeções em portos e aeroportos, a cooperação com embaixadas e governos estrangeiros para proteger suas comunidades no exterior, e o fornecimento de abrigos, apoio psicológico e assistência jurídica para a reintegração das vítimas resgatadas." },
+            { nome: "Espanha", foto: "Fotos%20onu/espanha.jpeg", descricao: "A Espanha adota uma postura de vanguarda e forte liderança europeia no combate ao tráfico de pessoas, tratando o tema como uma prioridade absoluta de direitos humanos e segurança interna. O posicionamento oficial espanhol foca na implementação do Plano Estratégico Nacional contra o Tráfico de Seres Humanos, com uma abordagem transversal que visa combater com igual rigor tanto a exploração sexual quanto o trabalho forçado, especialmente em setores como a agricultura e o trabalho doméstico. O país prioriza o desmantelamento de redes criminosas transnacionais em cooperação com a Europol, o endurecimento das sanções penais para os traficantes e, de forma central, a proteção integral às vítimas através de parcerias com ONGs especializadas, garantindo-lhes período de recuperação, autorização de residência e apoio psicossocial completo." },
+            { nome: "Arábia Saudita", foto: "Fotos%20onu/arabia.jpeg", descricao: "A Arábia Saudita adota uma postura de crescente rigor e modernização institucional no combate ao tráfico de pessoas, alinhando suas políticas internas às convenções internacionais, como o Protocolo de Palermo da ONU. O país tem focado na aplicação estrita de sua Lei Antitráfico e na atuação do seu Comitê Nacional de Combate ao Tráfico de Pessoas para monitorar e punir crimes de exploração laboral e documental, especialmente no contexto da grande força de trabalho estrangeira presente em seu território. O posicionamento oficial saudita enfatiza o fortalecimento dos mecanismos de triagem e denúncia, a reforma contínua de regulamentações trabalhistas para prevenir abusos patronais e o fornecimento de abrigos e assistência jurídica gratuita para a proteção e acolhimento das vítimas identificadas." },
+            { nome: "Moldávia", foto: "Fotos%20onu/moldavia.jpeg", descricao: "A Moldávia adota uma postura de profunda seriedade e cooperação internacional no combate ao tráfico de pessoas, reconhecendo o desafio histórico de ser um país de origem e trânsito para redes de exploração no continente europeu. Alinhado às convenções do Conselho da Europa e da ONU, o posicionamento oficial moldavo prioriza o fortalecimento do Comitê Nacional para o Combate ao Tráfico de Seres Humanos e o endurecimento das investigações criminais para punir traficantes e funcionários públicos corruptos que facilitem esses crimes. O governo foca intensamente na modernização de seus controles fronteiriços, na prevenção da exploração laboral e sexual de cidadãos vulneráveis que buscam oportunidades no exterior e no financiamento de abrigos especializados que oferecem assistência médica, jurídica e psicológica para apoiar a reabilitação e a reintegração social segura das vítimas." },
+            { nome: "Turquia", foto: "Fotos%20onu/turquia.jpeg", descricao: "A Turquia adota uma postura de forte engajamento e vigilância estratégica no combate ao tráfico de pessoas, reconhecendo o imenso desafio de sua posição geográfica como um dos principais corredores migratórios e de trânsito entre o Oriente Médio, a Ásia e a Europa. Alinhado às convenções internacionais, o posicionamento oficial turco foca na atuação do Comando Geral da Gendarmaria e da Direção de Gestão da Migração para monitorar fronteiras, combater o contrabando de migrantes e desmantelar redes de exploração sexual e laboral. O governo prioriza o fortalecimento das investigações criminais, o treinamento de agentes de segurança para a identificação precoce de indivíduos em situação de vulnerabilidade e o investimento em abrigos públicos especializados, garantindo assistência médica, jurídica e psicossocial para a proteção e o acolhimento seguro das vítimas resgatadas." },
+            { nome: "Azerbaijão", foto: "Fotos%20onu/Azerbaijão.jpeg", descricao: "O Azerbaijão adota uma postura firme e proativa no combate ao tráfico de pessoas, tratando o tema como uma prioridade de segurança nacional e de direitos humanos. Devido à sua posição geográfica estratégica entre a Europa e a Ásia, o país atua intensamente no controle de suas fronteiras e na modernização de sua legislação, alinhando-se aos protocolos internacionais da ONU. O posicionamento oficial azeri foca na implementação rigorosa de Planos de Ação Nacionais, no fortalecimento de unidades policiais especializadas para desmantelar redes de exploração laboral e sexual, e no investimento em centros de assistência e reabilitação para garantir a proteção integral, o apoio jurídico e a reintegração social das vítimas." },
+            { nome: "Afeganistão", foto: "Fotos%20onu/afeganistao.jpeg", descricao: "O Afeganistão adota uma postura de rígida condenação e controle de fronteiras no combate ao tráfico de pessoas, tratando o tema sob a ótica da segurança interna e da aplicação da lei islâmica (Sharia). O posicionamento oficial foca no combate ao contrabando de migrantes e no desmantelamento de redes de rapto que operam nas divisas com o Irã e o Paquistão. O país prioriza a repressão penal direta contra os traficantes e o monitoramento de rotas clandestinas, embora as ações de proteção integral, acolhimento e reintegração social de vítimas de exploração laboral e casamentos forçados enfrentem severas limitações em decorrência da escassez de recursos e da atual conjuntura socioeconômica do território." },
+            { nome: "Rússia", foto: "Fotos%20onu/russia.jpeg", descricao: "A Rússia adota uma postura de forte controle estatal e segurança nacional no combate ao tráfico de pessoas, amparada pelas diretrizes rigorosas de seu Código Penal. O posicionamento oficial russo foca na repressão severa a redes criminosas e no desmantelamento de esquemas de exploração laboral e sexual, com atenção especial ao monitoramento de suas extensas fronteiras e fluxos migratórios. O país prioriza a atuação policial direta e a persecução penal dos traficantes, embora as estruturas governamentais para a assistência de longo prazo, acolhimento e reabilitação social das vítimas dependam de uma rede de apoio mais restrita." },
+            { nome: "Coreia do Sul", foto: "Fotos%20onu/coreia.jpeg", descricao: "A Coreia do Sul adota uma postura de alta vigilância e modernização institucional no combate ao tráfico de pessoas, tratando o tema como uma violação grave dos direitos humanos e da dignidade social. O posicionamento oficial sul-coreano ampara-se na Lei de Prevenção do Tráfico de Pessoas e foca no desmantelamento de redes transnacionais que alimentam a exploração laboral, a servidão por dívidas e a exploração sexual, inclusive no ambiente digital. O país prioriza a coordenação entre ministérios para fiscalizar vistos de entretenimento e trabalho, o endurecimento das penas para os criminosos e o fortalecimento de canais de denúncia específicos, garantindo proteção jurídica, abrigo e assistência psicológica para o acolhimento seguro das vítimas." },
+            { nome: "Tailândia", foto: "Fotos%20onu/tailandia.jpeg", descricao: "A Tailândia adota uma postura de forte engajamento e prioridade nacional no combate ao tráfico de pessoas, reconhecendo o desafio estratégico de sua posição como centro de origem, trânsito e destino na região do Sudeste Asiático. O posicionamento oficial tailandês ampara-se na Lei de Prevenção e Supressão ao Tráfico de Pessoas e atua por meio de uma abordagem interagências para desmantelar redes de exploração laboral (especialmente nas indústrias pesqueira e manufatureira) e exploração sexual. O país prioriza a cooperação internacional com nações vizinhas, o endurecimento das investigações criminais e o uso de centros de triagem especializados para identificar indivíduos vulneráveis, garantindo abrigos governamentais, assistência jurídica e suporte psicológico para a reabilitação das vítimas." },
+            { nome: "Colômbia", foto: "Fotos%20onu/colombia.jpeg", descricao: "A Colômbia adota uma postura de vanguarda e forte engajamento institucional no combate ao tráfico de pessoas, tratando o crime como uma violação grave aos direitos humanos e à segurança nacional. O posicionamento oficial colombiano ampara-se na Estratégia Nacional contra o Tráfico de Pessoas e atua por meio de um comitê interinstitucional para desmantelar redes criminosas que exploram a vulnerabilidade migratória, com foco na exploração sexual e no trabalho forçado. O país prioriza a cooperação internacional, o fortalecimento das investigações judiciais e a implementação de rotas de atenção imediata, garantindo proteção, assistência psicossocial e apoio à repatriação e reintegração segura das vítimas." }
+        ];
+
+        function gerarHtmlPaises(lista, classeTag, textoTag) {
+            return lista.map(pais => {
+                const imagemSrc = pais.foto ? pais.foto : "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='65' viewBox='0 0 100 65'><rect width='100%' height='100%' fill='%23e2e8f0'/><text x='50%' y='55%' font-family='sans-serif' font-size='10' fill='%2394a3b8' text-anchor='middle'>[ Foto ]</text></svg>";
+                
+                return `
+                    <div class="card-pais">
+                        <img class="foto-pais" src="${imagemSrc}" alt="Bandeira/Foto de ${pais.nome}">
+                        <div class="info-pais">
+                            <span class="tag-sala ${classeTag}">${textoTag}</span>
+                            <h3>${pais.nome}</h3>
+                            <p>${pais.descricao}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Descobre onde fica o meio da lista dinamicamente (para 21 itens, metade será 11)
+        const metade = Math.ceil(paisesBase.length / 2);
+
+        // Corta a lista em duas partes
+        const primeiraMetade = paisesBase.slice(0, metade); // Do item 1 ao 11
+        const segundaMetade = paisesBase.slice(metade);     // Do item 12 ao final
+
+        // Injeta a primeira metade na Coluna 1 e a segunda metade na Coluna 2
+        document.getElementById('box-sala-2c-col1').innerHTML = gerarHtmlPaises(primeiraMetade, 'tag-2c', 'SALA 2°C');
+        document.getElementById('box-sala-2c-col2').innerHTML = gerarHtmlPaises(segundaMetade, 'tag-2c', 'SALA 2°C');
+    </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre — MUN Blog</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    .sobre-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 40px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+    }
+    .sobre-card h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sobre-card p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .sobre-card p:last-child { margin-bottom: 0; }
+    .dupla-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .dupla-card {
+      background: var(--blue-pale);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+    }
+    .dupla-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 500;
+      margin: 0 auto 12px;
+    }
+    .dupla-card h4 {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .dupla-card span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .info-item {
+      background: var(--blue-pale);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+    .info-item strong {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--blue-main);
+      margin-bottom: 4px;
+    }
+    .info-item span {
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+    @media (max-width: 768px) {
+      .dupla-grid, .info-grid { grid-template-columns: 1fr; }
+      .sobre-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="brand">
+        <div class="un-logo">ONU</div>
+        <span class="brand-name">MUN Blog</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Início</a>
+        <a href="posts.html">Posts</a>
+        <a href="comites.html">Comitês</a>
+        <a href="sobre.html" class="active">Sobre</a>
+        <a href="noticias.html">Notícias</a>
+        <a href="salas.html">Salas</a>
+      </div>
+      <button class="menu-btn" id="menuBtn">&#9776;</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Início</a>
+      <a href="posts.html">Posts</a>
+      <a href="comites.html">Comitês</a>
+      <a href="sobre.html">Sobre</a>
+    </div>
+  </nav>
+
+  <header class="post-hero">
+    <div class="container">
+      <span class="hero-eyebrow">Quem somos</span>
+      <h1 class="post-title">Sobre o blog</h1>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container" style="max-width:780px">
+
+      <div class="sobre-card">
+        <h2>O projeto</h2>
+        <p>Este blog foi criado como parte de um trabalho escolar sobre a Simulação das Nações Unidas (MUN). O objetivo é documentar nossa experiência como delegados, registrando os debates, resoluções e aprendizados ao longo da simulação.</p>
+        <p>Aqui você encontra cobertura dos principais comitês, análises dos temas debatidos, bastidores das negociações e o vídeo da nossa dupla comentando sobre a experiência.</p>
+      </div>
+
+      <div class="sobre-card">
+        <h2>Desenvolvedores do Blog</h2>
+        <div class="dupla-grid">
+          <div class="dupla-card">
+            <div class="dupla-avatar" style="background:#dbeafe;color:#1e40af;">A</div>
+            <!-- Troque a letra pela inicial do seu nome -->
+            <h4>Álvaro Henrique</h4>
+            <!-- Troque pelo seu nome -->
+            <span>Jornalista · Desenvolvedor do Blog</span>
+            <!-- Troque pelo seu comitê -->
+          </div>
+          <div class="dupla-card">
+            <div class="dupla-avatar" style="background:#dcfce7;color:#166534;">Y</div>
+            <!-- Troque a letra pela inicial do nome da sua dupla -->
+            <h4>Yasmin Leticia</h4>
+            <!-- Troque pelo nome da sua dupla -->
+            <span>Jornalista · Editora Chefe</span>
+            <!-- Troque pelo comitê da sua dupla -->
+          </div>
+        </div>
+      </div>
+
+      <div class="sobre-card">
+        <h2>Informações da simulação</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>Evento</strong>
+            <span>Simulação da ONU (MUN)</span>
+          </div>
+          <div class="info-item">
+            <strong>Escola</strong>
+            <span>SESI Pindamonhangaba</span>
+            <!-- Troque pelo nome da escola -->
+          </div>
+          <div class="info-item">
+            <strong>Ano</strong>
+            <span>2026</span>
+          </div>
+          <div class="info-item">
+            <strong>Turma</strong>
+            <span>2°B & 2°C</span>
+            <!-- Troque pela sua turma -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 MUN Blog · Projeto Escolar · Feito com dedicação e Empenho</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
